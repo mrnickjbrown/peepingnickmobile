@@ -1,4 +1,8 @@
-
+plugins {
+    id 'com.android.application'
+    id 'com.chaquo.python'
+    id 'kotlin-android'
+}
 buildscript {
     repositories {
         google()
