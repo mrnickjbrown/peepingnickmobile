@@ -1,0 +1,58 @@
+
+plugins {
+    id 'com.android.application'
+    id 'com.chaquo.python'
+    id 'kotlin-android'
+}
+
+android {
+    namespace 'com.peepingnick.android'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.peepingnick.android"
+        minSdk 26
+        targetSdk 34
+        versionCode 3
+        versionName "3.0-debug"
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    packagingOptions {
+        resources.excludes += ['**/*.pyc', '**/__pycache__/**']
+    }
+}
+
+python {
+    buildPython "3.11"
+    pip {
+        install "Pillow==10.3.0"
+        install "numpy==1.26.4"
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.22"
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.activity:activity-ktx:1.9.2'
+}
